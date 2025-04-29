@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy Management Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Login Overlay -->
+  <div id="loginOverlay" class="overlay">
+    <div class="auth-card">
+      <h1>🔌 Energy Dashboard</h1>
+      <p id="loginStatus" class="status-message"></p>
+      
+      <form id="loginForm" class="auth-form">
+        <h2>Login</h2>
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <form id="registerForm" class="auth-form">
+        <h2>Register</h2>
+        <div class="form-group">
+          <label for="registerName">Name</label>
+          <input type="text" id="registerName" required>
+        </div>
+        <div class="form-group">
+          <label for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" required>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Dashboard Content -->
+  <div id="dashboardContent" class="hidden">
+    <nav class="navbar">
+      <div class="logo">🔌 EMD</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#admin">Admin</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="container" id="home">
+      <h1>🏠 Energy Management Dashboard</h1>
+      <div class="card live-consumption">
+        <h2>Live Consumption</h2>
+        <p id="liveConsumption">Loading...</p>
+      </div>
+      <div class="card">
+        <h2>📊 Consumption Over Time</h2>
+        <canvas id="energyChart"></canvas>
+      </div>
+      <div class="card">
+        <h2>⚡ Device-wise Usage</h2>
+        <ul id="deviceList"></ul>
+      </div>
+    </div>
+
+    <div class="container" id="admin">
+      <h1>🛠️ Admin Panel</h1>
+      <div class="card">
+        <h2>Device Management</h2>
+        <p>Manage and monitor connected devices</p>
+        <img src="https://cdn-icons-png.flaticon.com/512/2420/2420530.png" alt="Admin Tools" class="admin-img">
+      </div>
+      <div class="card">
+        <h2>Manage Devices</h2>
+        <ul id="adminDeviceList" class="admin-device-list"></ul>
+      </div>
+
+      <!-- 🔥 Add Device Form (new) -->
+      <div class="card">
+        <h2>Add New Device</h2>
+        <form id="addDeviceForm" onsubmit="addNewDevice(event)">
+          <input type="text" id="newDeviceName" placeholder="Device Name" required>
+          <input type="number" id="newDeviceUsage" placeholder="Device Usage (W)" required>
+          <button type="submit">Add Device</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
